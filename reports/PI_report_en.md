@@ -1,4 +1,4 @@
-### PROBLEM STATEMENT
+## PROBLEM STATEMENT
 
 Develop a "Multi-Task Text Utility" application that takes a user question and returns a JSON output. 
 Apply the OpenAI API using at least one prompt engineering technique learned in class. 
@@ -20,7 +20,7 @@ Track and report at least three metrics, such as cost, tokens used, and latency.
 - Have a backup model if primary model fails
 - Exclude unreleased feature information and upcoming product changes
 
-### SOLUTION
+## SOLUTION
 
 ## 1. Architecture
 
