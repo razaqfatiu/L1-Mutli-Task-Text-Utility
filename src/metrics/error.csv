@@ -1,0 +1,60 @@
+2025-11-03T13:24:00.660Z,Battery dead and cannot be charged,"400 Invalid input: expected number, received string","Error: 400 Invalid input: expected number, received string
+    at APIError.generate (/Users/fatiu/Documents/project/Andela/L1-Mutli-Task-Text-Utility/node_modules/openai/core/error.js:45:20)
+    at OpenAI.makeStatusError (/Users/fatiu/Documents/project/Andela/L1-Mutli-Task-Text-Utility/node_modules/openai/client.js:165:32)
+    at OpenAI.makeRequest (/Users/fatiu/Documents/project/Andela/L1-Mutli-Task-Text-Utility/node_modules/openai/client.js:333:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async llmReq (/Users/fatiu/Documents/project/Andela/L1-Mutli-Task-Text-Utility/prompts/completion.js:8:10)
+    at async /Users/fatiu/Documents/project/Andela/L1-Mutli-Task-Text-Utility/src/app.js:44:25",466,openai/gpt-4.1-mini,"{""question"":""Battery dead and cannot be charged""}"
+2025-11-03T13:27:30.841Z,Battery dead and cannot be charged,"400 Invalid input: expected number, received string","Error: 400 Invalid input: expected number, received string
+    at APIError.generate (/Users/fatiu/Documents/project/Andela/L1-Mutli-Task-Text-Utility/node_modules/openai/core/error.js:45:20)
+    at OpenAI.makeStatusError (/Users/fatiu/Documents/project/Andela/L1-Mutli-Task-Text-Utility/node_modules/openai/client.js:165:32)
+    at OpenAI.makeRequest (/Users/fatiu/Documents/project/Andela/L1-Mutli-Task-Text-Utility/node_modules/openai/client.js:333:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async llmReq (/Users/fatiu/Documents/project/Andela/L1-Mutli-Task-Text-Utility/prompts/completion.js:8:10)
+    at async /Users/fatiu/Documents/project/Andela/L1-Mutli-Task-Text-Utility/src/app.js:44:25",267,openai/gpt-4.1-mini,"{""question"":""Battery dead and cannot be charged""}"
+2025-11-03T13:29:22.647Z,Battery dead and cannot be charged,"400 Invalid input: expected number, received string","Error: 400 Invalid input: expected number, received string
+    at APIError.generate (/Users/fatiu/Documents/project/Andela/L1-Mutli-Task-Text-Utility/node_modules/openai/core/error.js:45:20)
+    at OpenAI.makeStatusError (/Users/fatiu/Documents/project/Andela/L1-Mutli-Task-Text-Utility/node_modules/openai/client.js:165:32)
+    at OpenAI.makeRequest (/Users/fatiu/Documents/project/Andela/L1-Mutli-Task-Text-Utility/node_modules/openai/client.js:333:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async llmReq (/Users/fatiu/Documents/project/Andela/L1-Mutli-Task-Text-Utility/prompts/completion.js:8:10)
+    at async /Users/fatiu/Documents/project/Andela/L1-Mutli-Task-Text-Utility/src/app.js:44:25",331,openai/gpt-4.1-mini,"{""question"":""Battery dead and cannot be charged""}"
+2025-11-03T13:29:33.724Z,"Battery dead and cannot be charged, what happened","400 Invalid input: expected number, received string","Error: 400 Invalid input: expected number, received string
+    at APIError.generate (/Users/fatiu/Documents/project/Andela/L1-Mutli-Task-Text-Utility/node_modules/openai/core/error.js:45:20)
+    at OpenAI.makeStatusError (/Users/fatiu/Documents/project/Andela/L1-Mutli-Task-Text-Utility/node_modules/openai/client.js:165:32)
+    at OpenAI.makeRequest (/Users/fatiu/Documents/project/Andela/L1-Mutli-Task-Text-Utility/node_modules/openai/client.js:333:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async llmReq (/Users/fatiu/Documents/project/Andela/L1-Mutli-Task-Text-Utility/prompts/completion.js:8:10)
+    at async /Users/fatiu/Documents/project/Andela/L1-Mutli-Task-Text-Utility/src/app.js:44:25",244,openai/gpt-4.1-mini,"{""question"":""Battery dead and cannot be charged, what happened""}"
+2025-11-03T13:31:00.395Z,"Battery dead and cannot be charged, what happened","400 Invalid input: expected number, received string","Error: 400 Invalid input: expected number, received string
+    at APIError.generate (/Users/fatiu/Documents/project/Andela/L1-Mutli-Task-Text-Utility/node_modules/openai/core/error.js:45:20)
+    at OpenAI.makeStatusError (/Users/fatiu/Documents/project/Andela/L1-Mutli-Task-Text-Utility/node_modules/openai/client.js:165:32)
+    at OpenAI.makeRequest (/Users/fatiu/Documents/project/Andela/L1-Mutli-Task-Text-Utility/node_modules/openai/client.js:333:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async llmReq (/Users/fatiu/Documents/project/Andela/L1-Mutli-Task-Text-Utility/prompts/completion.js:8:10)
+    at async /Users/fatiu/Documents/project/Andela/L1-Mutli-Task-Text-Utility/src/app.js:44:25",283,openai/gpt-4.1-mini,"{""question"":""Battery dead and cannot be charged, what happened""}"
+2025-11-03T13:31:17.921Z,"Battery dead and cannot be charged, what happened","400 Invalid input: expected number, received string","Error: 400 Invalid input: expected number, received string
+    at APIError.generate (/Users/fatiu/Documents/project/Andela/L1-Mutli-Task-Text-Utility/node_modules/openai/core/error.js:45:20)
+    at OpenAI.makeStatusError (/Users/fatiu/Documents/project/Andela/L1-Mutli-Task-Text-Utility/node_modules/openai/client.js:165:32)
+    at OpenAI.makeRequest (/Users/fatiu/Documents/project/Andela/L1-Mutli-Task-Text-Utility/node_modules/openai/client.js:333:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async llmReq (/Users/fatiu/Documents/project/Andela/L1-Mutli-Task-Text-Utility/prompts/completion.js:8:10)
+    at async /Users/fatiu/Documents/project/Andela/L1-Mutli-Task-Text-Utility/src/app.js:44:25",172,openai/gpt-4.1-mini,"{""question"":""Battery dead and cannot be charged, what happened""}"
+2025-11-03T13:31:52.177Z,"Battery dead and cannot be charged, what happened","400 Invalid input: expected number, received string","Error: 400 Invalid input: expected number, received string
+    at APIError.generate (/Users/fatiu/Documents/project/Andela/L1-Mutli-Task-Text-Utility/node_modules/openai/core/error.js:45:20)
+    at OpenAI.makeStatusError (/Users/fatiu/Documents/project/Andela/L1-Mutli-Task-Text-Utility/node_modules/openai/client.js:165:32)
+    at OpenAI.makeRequest (/Users/fatiu/Documents/project/Andela/L1-Mutli-Task-Text-Utility/node_modules/openai/client.js:333:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async llmReq (/Users/fatiu/Documents/project/Andela/L1-Mutli-Task-Text-Utility/prompts/completion.js:8:10)
+    at async /Users/fatiu/Documents/project/Andela/L1-Mutli-Task-Text-Utility/src/app.js:46:25",274,openai/gpt-4.1-mini,"{""question"":""Battery dead and cannot be charged, what happened""}"
+2025-11-03T13:32:21.054Z,"Battery dead and cannot be charged, what happened","400 Invalid input: expected number, received string","Error: 400 Invalid input: expected number, received string
+    at APIError.generate (/Users/fatiu/Documents/project/Andela/L1-Mutli-Task-Text-Utility/node_modules/openai/core/error.js:45:20)
+    at OpenAI.makeStatusError (/Users/fatiu/Documents/project/Andela/L1-Mutli-Task-Text-Utility/node_modules/openai/client.js:165:32)
+    at OpenAI.makeRequest (/Users/fatiu/Documents/project/Andela/L1-Mutli-Task-Text-Utility/node_modules/openai/client.js:333:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async llmReq (/Users/fatiu/Documents/project/Andela/L1-Mutli-Task-Text-Utility/prompts/completion.js:8:10)
+    at async /Users/fatiu/Documents/project/Andela/L1-Mutli-Task-Text-Utility/src/app.js:46:25",202,openai/gpt-4.1-mini,"{""question"":""Battery dead and cannot be charged, what happened""}"
+2025-11-03T15:04:39.503Z,I got a payment failure,Unterminated string in JSON at position 235,"SyntaxError: Unterminated string in JSON at position 235
+    at JSON.parse (<anonymous>)
+    at /Users/fatiu/Documents/project/Andela/L1-Mutli-Task-Text-Utility/src/app.js:56:27
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",2985,openai/gpt-4.1-mini,"{""question"":""I got a payment failure""}"
