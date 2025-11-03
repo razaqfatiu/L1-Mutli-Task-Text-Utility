@@ -1,29 +1,28 @@
-#### PROBLEM STATEMENT
+### PROBLEM STATEMENT
 
 Develop a "Multi-Task Text Utility" application that takes a user question and returns a JSON output. 
 Apply the OpenAI API using at least one prompt engineering technique learned in class. 
 Track and report at least three metrics, such as cost, tokens used, and latency.
 
 
-### 1. Objective
-- Reduce ticket resolution time by 35% through instant technical guidance
+## 1. Objective
+- Reduce ticket resolution time by 50% through instant technical guidance
 - Decrease senior engineer escalations by 50% with expert knowledge access
 - Enable junior engineers to handle complex issues with AI-powered troubleshooting
 
-### 2. Key Performance Indicators
--Resolution time reduction from 45 to 29 minutes average
-- Escalation rate decrease from 40% to 20% of tickets
+## 2. Key Performance Indicators
+-Resolution time reduction from 45 to 15 minutes average
+- Escalation rate decrease from 40% to 10% of tickets
 - 95%+ accuracy on internal documentation and solution queries
 
-### 3. Guardrails
-- Auto-flag responses with confidence below 0.7 for human review
-- Always cite specific internal documentation sources for technical answers
+## 3. Guardrails
+- Auto-flag responses with confidence below 0.6 for human review
+- Have a backup model if primary model fails
 - Exclude unreleased feature information and upcoming product changes
 
+### SOLUTION
 
-#### SOLUTION
-
-### 1. Architecture
+## 1. Architecture
 
 System flow:
 
@@ -32,7 +31,7 @@ New Question → API Call → Call LLM API  → if primary LLM call failed with 
 ## Detailed Architecture
 
 **Request Flow:**
-1. **New Question**: User submits a customer support question via POST /endpoint
+1. **New Question**: User submits a customer support question via POST /
 2. **API Call**: Express.js receives and validates the request
 3. **Call LLM API**: System calls OpenAI GPT-4.1-mini with structured prompt
 4. **Validate Confidence**:
@@ -154,7 +153,7 @@ V3: Most reliable but increased token usage and complexity
 
 
 
-## 4. Fallback Strategy
+## 4. Guardrails/Fallback Strategy
 
 # Implementation
 **Single-level automatic fallback** from GPT-4.1-mini to GPT-5-mini on any API error
