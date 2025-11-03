@@ -1,235 +1,187 @@
+
+
 # Multi-Task Text Utility Application
 
-## PROBLEM STATEMENT
+## ✅ Problem Overview
 
-Develop a "Multi-Task Text Utility" application that takes a user question and returns a JSON output. Apply the OpenAI API using at least one prompt engineering technique learned in class. Track and report at least three metrics, such as cost, tokens used, and latency.
+Build a **Multi-Task Text Utility** system that:
 
-### 1. Objective
+* Accepts a user question
+* Uses the OpenAI API with prompt-engineering techniques
+* Returns a **strict JSON response**
+* Tracks **at least 3 metrics** (e.g., cost, tokens, latency)
 
-- **Reduce ticket resolution time** by 50% through instant technical guidance
-- **Decrease senior engineer escalations** by 50% with expert knowledge access
-- **Enable junior engineers** to handle complex issues with AI-powered troubleshooting
+### 🎯 Core Objectives
 
-### 2. Key Performance Indicators
+| Goal                               | Target                    |
+| ---------------------------------- | ------------------------- |
+| Reduce ticket resolution time      | **45 → 15 mins** (-50%)   |
+| Reduce senior engineer escalations | **40% → 10%** (-75%)      |
+| Empower junior engineers           | AI-guided troubleshooting |
 
-- Resolution time reduction from 45 to 15 minutes average
-- Escalation rate decrease from 40% to 10% of tickets
-- 95%+ accuracy on internal documentation and solution queries
+### 📊 Key Result Metrics
 
-### 3. Guardrails
+* Resolution time improvement
+* Escalation rate reduction
+* ≥95% accuracy on internal knowledge queries
 
-- Auto-flag responses with confidence below 0.6 for human review
-- Have a backup model if primary model fails
-- Exclude unreleased feature information and upcoming product changes
+### 🛡️ Guardrails
+
+* Auto-flag responses when confidence `< 0.6`
+* Automatic fallback model on failure
+* No unreleased product info or future roadmap answers
 
 ---
 
-## SOLUTION
+## 🧠 Solution Design
 
-### 1. Architecture
+### 🚀 System Architecture
 
-**System Flow:**
+**Pipeline**
 
-New Question → API Call → Call LLM API → Validate Confidence → Send Response
-↓
-Primary Model Fails → Fallback to Secondary Model
+```
+User Input → Validate → LLM Call → Confidence Check → JSON Response
+                        ↓
+           Fallback Model if Primary Fails
+```
 
-**Detailed Request Flow:**
+### Detailed Execution Flow
 
-1. **New Question**: User submits customer support question via POST endpoint
-2. **API Call**: Express.js receives and validates the request
-3. **Call LLM API**: System calls OpenAI GPT-4.1-mini with structured prompt
-4. **Fallback Strategy**: If primary model fails, automatically switch to GPT-5-mini
-5. **Validate Confidence**:
-   - Confidence < 0.5 → Response includes `needHumanReview: true`
-   - Confidence ≥ 0.5 → Response includes `needHumanReview: false`
-6. **Send Response**: JSON response returned with answer and metadata
+1. User submits support question (POST request)
+2. Express.js validates input
+3. Calls **GPT-4.1-mini** with structured JSON prompt
+4. On model failure → fallback to **GPT-5-mini**
+5. Confidence logic:
 
-### 2. Prompt Engineering Techniques
+   * `< 0.5` → `"needHumanReview": true`
+   * `≥ 0.5` → `"needHumanReview": false`
+6. Return final JSON response + metadata
 
-#### V1 - Minimal JSON Suggestion
+---
 
-````json
-{
-  "system": "You are an agent who helps people get answer to their questions, specifically customer support requests. I want you to Respond ONLY in JSON with keys: answer, confidence, actions.",
-  "user": "{Question}"
-}
+## 🎛️ Prompt Engineering Strategy
 
-Analysis:
-
-Simple and direct instruction
-
-Minimal context provided
-
-Risk of inconsistent output formatting
-
-#### V2 - Improved with Detailed Output Description
+### **V1 — Minimal Prompt (Baseline)**
 
 ```json
 {
-  "system": "You are a system assistant that takes questions input and provides an answer only in JSON format. The JSON Response should have these object keys: answer (answer to the question asked), confidence (the confidence level of your answer from 0.0 - 1.0), and actions (the recommended actions you suggest).",
+  "system": "You are an assistant who answers support questions. Reply ONLY in JSON with keys: answer, confidence, actions.",
   "user": "{Question}"
 }
+```
 
-Improvements:
+**Pros:** Simple
+**Cons:** Inconsistent formatting risk
 
-Clear key descriptions
+---
 
-Explicit confidence range (0.0-1.0)
+### **V2 — Structured Output Prompt**
 
-Better-defined action expectations
-
-#### V3 - Enhanced with Examples
-
+```json
 {
-  "system": "You are a system assistant that takes questions input and provides an answer only in JSON format. The JSON Response should have these object keys: answer (answer to the question asked), confidence (the confidence level of your answer from 0.0 - 1.0), and actions (the recommended actions you suggest).",
+  "system": "You are a system assistant. Respond ONLY in JSON with keys: answer, confidence (0.0-1.0), and actions (recommended steps).",
+  "user": "{Question}"
+}
+```
+
+✅ Clear key definitions
+✅ Explicit confidence range
+
+---
+
+### **V3 — Examples + Instructions (Best Practice)**
+
+```json
+{
+  "system": "You are a system assistant. Return ONLY JSON with: answer, confidence (0.0-1.0), actions.",
   "examples": [
     {
       "input": "Payment failed",
       "output": {
-        "answer": "A payment failure can occur due to various reasons such as insufficient funds, incorrect payment details,",
+        "answer": "Payment failures may occur due to insufficient funds or incorrect payment details.",
         "confidence": 0.8,
         "actions": [
-          "Verify your payment details, including card number, expiry date, and CVV.",
-          "Ensure that your account has sufficient funds."
+          "Verify payment details (card number, expiry, CVV)",
+          "Ensure account has sufficient funds"
         ]
       }
     },
     {
-      "input": "Laptop going off failed",
+      "input": "Laptop turning off",
       "output": {
-        "answer": "Use the power button to get it on",
+        "answer": "The laptop may be shutting down due to battery or power issues.",
         "confidence": 0.8,
         "actions": [
-          "check your battery is properly inserted",
-          "Plug in to power"
+          "Confirm battery is connected properly",
+          "Connect charger and try powering on again"
         ]
       }
     }
   ],
   "user": "{Question}"
 }
+```
 
-Advantages:
+### Prompt Comparison
 
-Concrete examples for pattern matching
+| Version | Strength      | Trade-off           |
+| ------- | ------------- | ------------------- |
+| V1      | Fastest       | Risky formatting    |
+| V2      | Balanced      | More tokens         |
+| V3      | Most reliable | Highest token usage |
 
-Consistent output structure
+---
 
-Demonstrates expected answer depth and action specificity
+## 📈 Metrics Summary
 
-Better quality control through demonstrated responses
+### 💰 Cost Efficiency
 
-Prompt Engineering Trade-offs:
+* **GPT-4.1-mini is 3.5-6.4× cheaper**
+* Avg cost: **$0.000084 – $0.000106 / query**
+* Minimal variation across temperatures
 
-V1: Fastest but least reliable
+### ⚡ Performance & Latency
 
-V2: Balanced approach with clear specifications
+* GPT-4.1-mini is **4-6× faster**
+* **2.7 – 3.8 sec avg latency**
+* Real-time support suitable
 
-V3: Most reliable but increased token usage and complexity
+### 🧩 Output Quality
 
-3. Metrics Summary
-Cost Efficiency
-GPT-4.1-mini dominates with 3.5-6.4x lower costs
+| Model        | Avg Tokens | Behavior                 |
+| ------------ | ---------- | ------------------------ |
+| GPT-4.1-mini | ~181–238   | Concise + efficient      |
+| GPT-5-mini   | ~688–953   | Detailed troubleshooting |
 
-Average cost: $0.000084-$0.000106 per query
+---
 
-Most economical option for routine support queries
+## 🔄 Fallback Strategy
 
-Minimal cost variation across temperature settings
+**Primary:** GPT-4.1-mini
+**Fallback:** GPT-5-mini if **any API error**
 
-Performance & Speed
-GPT-4.1-mini responds 4-6x faster
+### Benefits
 
-Average latency: 2,714-3,774ms (under 4 seconds)
+* 99%+ reliability
+* 90%+ calls stay on cheaper model
+* Simple `try → fallback → catch` logic
 
-Consistent performance across all configurations
+---
 
-Suitable for real-time support engineer use
+## ✅ Testing Strategy
 
-Output Characteristics
-GPT-5-mini generates 3-4x more content
+| Test                  | Purpose               | Enforcement            |
+| --------------------- | --------------------- | ---------------------- |
+| Token usage check     | Prevent cost spikes   | Fail >10% token budget |
+| JSON schema check     | Stable pipeline parse | Must match schema      |
+| Fallback verification | Ensure reliability    | Log model switching    |
 
-Average tokens: 688-953 vs 181-238 for GPT-4.1-mini
+---
 
-Provides more detailed troubleshooting steps
+## 🚀 Future Improvements
 
-Better for complex technical scenarios
-
-4. Fallback Strategy
-Implementation
-Single-level automatic fallback from GPT-4.1-mini to GPT-5-mini on any API error
-
-How It Works
-Primary Attempt: Always try GPT-4.1-mini first (cost-effective)
-
-Automatic Fallback: If primary fails for any reason, automatically switch to GPT-5-mini
-
-Error Propagation: If fallback also fails, return error to caller
-
-Benefits
-Minimal Complexity: No complex retry logic or error type checking
-
-High Reliability: 99%+ success rate with backup model
-
-Cost Optimized: 90%+ queries use economical primary model
-
-Easy Maintenance: Simple try-catch structure
-
-Additional Considerations
-Confidence Threshold: Consider dynamic thresholds based on query complexity
-
-Batch Processing: For non-real-time queries, consider batch processing to optimize costs
-
-5. Testing Strategy
-Test Coverage
-Three validation tests ensure LLM integration reliability and cost control
-
-1. Token Counting Validation
-Purpose: Prevent cost overruns by enforcing token limits
-
-Method: Compare actual token usage against configured maximum
-
-Threshold: Fail if tokens exceed max_token parameter by 10%
-
-Impact: Direct cost control and performance optimization
-
-2. JSON Schema Validation
-Purpose: Ensure consistent output structure for downstream processing
-
-Method: Validate required fields (answer, confidence, actions) and data types
-
-Requirements: String answer, number confidence (0.0-1.0), string array actions
-
-Impact: Guarantees parseable responses for support engineer tools
-
-3. Fallback Strategy Verification
-Purpose: Confirm automatic model switching on API failures
-
-Method: Monitor model usage patterns and error recovery
-
-Validation: Primary model preference with backup activation
-
-Impact: Service reliability during API outages or rate limits
-
-6. Potential Improvements
-1. Dynamic Token Allocation
-Smart token budgeting based on query complexity and confidence requirements
-
-Allocate more tokens to low-confidence responses needing detailed explanations
-
-Reduce tokens for high-confidence, straightforward answers
-
-Expected impact: 25% better token efficiency without quality loss
-
-2. Confidence-Based Model Routing
-Intelligent model selection based on predicted response complexity
-
-Use GPT-4.1-mini for high-confidence pattern matches (80%+ queries)
-
-Route complex/ambiguous questions directly to GPT-5-mini
-
-Expected impact: 15% cost savings with maintained quality
-
-
-````
+| Enhancement                   | Benefit                 |
+| ----------------------------- | ----------------------- |
+| Dynamic token allocation      | ~25% cost efficiency    |
+| Confidence-based routing      | ~15% additional savings |
+| Adaptive confidence threshold | Smarter review triggers |
